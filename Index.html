@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8">
+  <title>Giriş Paneli</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .grid {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, #111 1px, transparent 1px), 
+                  linear-gradient(0deg, #111 1px, transparent 1px);
+      background-size: 40px 40px;
+      animation: moveGrid 60s linear infinite;
+      opacity: 0.03;
+      z-index: -1;
+    }
+
+    @keyframes moveGrid {
+      0% { background-position: 0 0, 0 0; }
+      100% { background-position: 200px 200px, 200px 200px; }
+    }
+
+    .glow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #0f001f 0%, #000 80%);
+      animation: pulse 12s ease-in-out infinite;
+      z-index: -2;
+    }
+
+    @keyframes pulse {
+      0%, 100% { filter: brightness(1); }
+      50% { filter: brightness(1.15); }
+    }
+
+    .main-btn {
+      background: linear-gradient(45deg, #ff0066, #6600ff);
+      padding: 22px 70px;
+      border: none;
+      border-radius: 60px;
+      font-size: 30px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 50px rgba(255, 0, 255, 0.6);
+      transition: all 0.3s ease;
+      animation: glowButton 2s ease-in-out infinite alternate;
+    }
+
+    .main-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 80px rgba(255, 0, 255, 1);
+    }
+
+    @keyframes glowButton {
+      from { box-shadow: 0 0 25px #ff00cc; }
+      to { box-shadow: 0 0 60px #6600ff, 0 0 120px #ff00cc; }
+    }
+
+    .intro-text {
+      position: absolute;
+      top: 10%;
+      font-size: 18px;
+      color: #888;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    #gif-container {
+      display: none;
+      margin-top: 30px;
+      animation: fadeInZoom 1.2s ease-out forwards;
+    }
+
+    #gif-container.show {
+      display: block;
+    }
+
+    #gif-container img {
+      width: 480px;
+      border-radius: 12px;
+      box-shadow: 0 0 80px #cc00ff66;
+    }
+
+    @keyframes fadeInZoom {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow"></div>
+<div class="grid"></div>
+
+<div class="intro-text">Giriş üçün təsdiqlə</div>
+
+<button class="main-btn" id="btn" onclick="start()">Bas Bura</button>
+
+<div id="gif-container">
+  <img src="https://i.pinimg.com/originals/79/ca/8a/79ca8adba644663ca6db96eed0c3692a.gif" alt="Surprise GIF">
+</div>
+
+<script>
+  function start() {
+    document.getElementById('btn').style.display = 'none';
+    document.querySelector('.intro-text').style.display = 'none';
+    document.getElementById('gif-container').classList.add('show');
+  }
+</script>
+
+</body>
+</html>
